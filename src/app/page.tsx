@@ -1,14 +1,14 @@
 "use client";
 
+import { Suspense } from "react";
 import { useEffect } from "react";
-
 import { getPokemonId } from "@/utils";
 import { Pagination, PokeCard, Skeleton } from "@/components";
 import { getPokemonList } from "@/store/global/actions";
 import { GlobalSelectors } from "@/store/global/selectors";
 import { useAppDispatch, useAppSelector, usePagination } from "@/hooks";
 
-export default function Home() {
+function Home() {
   const dispatch = useAppDispatch();
   const { data, isLoading } = useAppSelector(GlobalSelectors.pokemonListState);
 
@@ -52,5 +52,13 @@ export default function Home() {
         />
       </div>
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading PokéDex...</div>}>
+      <Home />
+    </Suspense>
   );
 }

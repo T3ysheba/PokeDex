@@ -3,13 +3,12 @@ import Image from "next/image";
 
 import type { IPokemon } from "@/types";
 
-export default async function PokemonPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = await params;
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+type Params = Promise<{ id: string }>;
+
+export default async function PokemonPage(props: { params: Params }) {
+  const params = await props.params;
+
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
 
   if (!res.ok) return notFound();
 

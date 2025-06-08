@@ -27,8 +27,6 @@ const usePagination = ({
 
   const hasNextPage = currentPage < last_page;
 
-  console.log(currentPage, last_page);
-
   const updatePage = (page: number) => {
     if (isSearchParams) {
       const params = new URLSearchParams(searchParams.toString());
