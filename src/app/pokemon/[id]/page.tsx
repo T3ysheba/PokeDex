@@ -8,7 +8,7 @@ export default async function PokemonPage({
 }: {
   params: { id: string };
 }) {
-  const { id } = params;
+  const { id } = await params;
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
   if (!res.ok) return notFound();
